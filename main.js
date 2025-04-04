@@ -1,20 +1,23 @@
-function Coletarcep() {
-  let cep = document.getElementById("cep").value;
-  console.log(cep);
-  dados(cep);
-}
-async function dados(cep) {
- let dados = await fetch(`https://viacep.com.br/ws/${cep}/json/`).then(response => response.json());
- console.log(dados)
- dadosTela(dados) 
+let botao = document.getElementById('btn')
+let tarefa = document.getElementById('input-tarefa')
+let lista  = document.getElementById('list')
 
-  
-}
+botao.addEventListener('click', function() {
+    let paragrafo = document.createElement('p')
+    lista.appendChild(paragrafo)
+    paragrafo.innerHTML = tarefa.value
+    paragrafo.classList.add('estilo-paragrafo')
+   paragrafo.addEventListener('click', function() {
+       paragrafo.style.textDecoration = 'line-through'
+   })
 
-function dadosTela(dados) {
-  document.querySelector("#endereco").innerHTML = dados.logradouro;
-  document.querySelector("#bairro").innerHTML = dados.bairro;
-  document.querySelector("#cidade").innerHTML = dados.localidade;
-  document.querySelector("#estado").innerHTML = dados.estado;
-  document.querySelector("#regiao").innerHTML = dados.regiao;
+paragrafo.addEventListener('dblclick', function() {
+    lista.removeChild(paragrafo)
 }
+)
+    
+
+
+
+
+   })
